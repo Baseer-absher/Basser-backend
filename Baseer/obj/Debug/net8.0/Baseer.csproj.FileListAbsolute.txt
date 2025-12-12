@@ -140,3 +140,4 @@
 /Users/taifbineid/Desktop/Basser-backend/Baseer/obj/Debug/net8.0/Baseer.pdb
 /Users/taifbineid/Desktop/Basser-backend/Baseer/obj/Debug/net8.0/Baseer.genruntimeconfig.cache
 /Users/taifbineid/Desktop/Basser-backend/Baseer/obj/Debug/net8.0/ref/Baseer.dll
+/Users/taifbineid/Desktop/Basser-backend/Baseer/obj/Debug/net8.0/Baseer.sourcelink.json

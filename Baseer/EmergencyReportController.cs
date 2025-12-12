@@ -24,22 +24,28 @@ public class EmergencyController : ControllerBase
     [HttpPost("create")]
     public async Task<IActionResult> Create([FromForm] CreateReportDto dto)
     {
-        string? imagePath = null;
+        List<string> imagePaths = new List<string>();
 
-        // Save image if provided
-        if (dto.Image != null && dto.Image.Length > 0)
+        if (dto.Images != null && dto.Images.Count > 0)
         {
-            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(dto.Image.FileName)}";
             var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
             Directory.CreateDirectory(folderPath);
 
-            var filePath = Path.Combine(folderPath, fileName);
-            await using var stream = new FileStream(filePath, FileMode.Create);
-            await dto.Image.CopyToAsync(stream);
+            foreach (var image in dto.Images)
+            {
+                if (image != null && image.Length > 0)
+                {
+                    var fileName = $"{Guid.NewGuid()}{Path.GetExtension(image.FileName)}";
+                    var filePath = Path.Combine(folderPath, fileName);
 
-            imagePath = filePath; // store path in DB
+                    await using var stream = new FileStream(filePath, FileMode.Create);
+                    await image.CopyToAsync(stream);
+
+                    imagePaths.Add(filePath); // store all saved paths
+                }
+            }
         }
-        var report = await _service.CreateReportAsync(dto.Name, dto.PhoneNumber, dto.NationalId, dto.Description,imagePath);
+        var report = await _service.CreateReportAsync(dto.Description,imagePaths,dto.EmergencyType,dto.LicensePlate,dto.Latitude,dto.Longitude);
         if (report == null) return BadRequest("Failed to analyze report.");
         return Ok(report);
     }
@@ -49,52 +55,17 @@ public class EmergencyController : ControllerBase
         var reports = await _service.GetAllReportsAsync();
         return Ok(reports);
     }
-    // [HttpPost("create-with-image")]
-    // public async Task<IActionResult> CreateWithImage([FromForm] CreateReportWithImageDto dto)
-    // {
-    //     // Save uploaded image to server / cloud
-    //     string? imageUrl = null;
-    //     if (dto.Image != null && dto.Image.Length > 0)
-    //     {
-    //         var fileName = $"{Guid.NewGuid()}{Path.GetExtension(dto.Image.FileName)}";
-    //         var filePath = Path.Combine("Uploads", fileName);
-    //         Directory.CreateDirectory("Uploads");
-    //         await using var stream = new FileStream(filePath, FileMode.Create);
-    //         await dto.Image.CopyToAsync(stream);
-    //         imageUrl = filePath; // or full URL if using cloud
-    //     }
-    //
-    //     // Analyze image via OpenAI Vision
-    //     var aiResult = await _aiService.AnalyzeImageReport(dto.Description, imageUrl, dto.Image);
-    //
-    //     // Save reporter + EmergencyReport
-    //     var report = await _emergencyService.CreateReportAsync(
-    //         dto.Name,
-    //         dto.PhoneNumber,
-    //         dto.NationalId,
-    //         dto.Description,
-    //         imageUrl,
-    //         aiResult
-    //     );
-    //
-    //     return Ok(report);
-    // }
 
     public class CreateReportDto
     {
-        public string Name { get; set; } = string.Empty;
-        public string? PhoneNumber { get; set; }
-        public string? NationalId { get; set; }
         public string Description { get; set; } = string.Empty;
-        public IFormFile? Image { get; set; }
+        public List<IFormFile>? Images { get; set; }
+        public EmergencyTypeEnum? EmergencyType { get; set; }
+        public string? LicensePlate { get; set; }
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
     }
-    public class CreateReportWithImageDto
-    {
-        public string Name { get; set; } = string.Empty;
-        public string? PhoneNumber { get; set; }
-        public string? NationalId { get; set; }
-        public string Description { get; set; } = string.Empty;
-        public IFormFile? Image { get; set; }
-    }
+ 
+
 
 }

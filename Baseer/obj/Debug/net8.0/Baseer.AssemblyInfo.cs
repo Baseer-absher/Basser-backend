@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Baseer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+82cf323c7b2d6d3679f16791ebca7eae2492f88e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Baseer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Baseer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

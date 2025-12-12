@@ -73,5 +73,8 @@ namespace Baseer.Models
         
         [MaxLength(500)]
         public string? ImageUrl { get; set; }
+        
+        [MaxLength(500)]
+        public string? LicensePlate  { get; set; }
     }
 }
