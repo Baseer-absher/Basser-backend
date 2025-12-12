@@ -126,6 +126,7 @@
 /Users/taifbineid/Desktop/Basser-backend/Baseer/obj/Debug/net8.0/Baseer.csproj.CoreCompileInputs.cache
 /Users/taifbineid/Desktop/Basser-backend/Baseer/obj/Debug/net8.0/Baseer.MvcApplicationPartsAssemblyInfo.cs
 /Users/taifbineid/Desktop/Basser-backend/Baseer/obj/Debug/net8.0/Baseer.MvcApplicationPartsAssemblyInfo.cache
+/Users/taifbineid/Desktop/Basser-backend/Baseer/obj/Debug/net8.0/Baseer.sourcelink.json
 /Users/taifbineid/Desktop/Basser-backend/Baseer/obj/Debug/net8.0/staticwebassets.build.json
 /Users/taifbineid/Desktop/Basser-backend/Baseer/obj/Debug/net8.0/staticwebassets.development.json
 /Users/taifbineid/Desktop/Basser-backend/Baseer/obj/Debug/net8.0/staticwebassets/msbuild.Baseer.Microsoft.AspNetCore.StaticWebAssets.props
@@ -140,4 +141,3 @@
 /Users/taifbineid/Desktop/Basser-backend/Baseer/obj/Debug/net8.0/Baseer.pdb
 /Users/taifbineid/Desktop/Basser-backend/Baseer/obj/Debug/net8.0/Baseer.genruntimeconfig.cache
 /Users/taifbineid/Desktop/Basser-backend/Baseer/obj/Debug/net8.0/ref/Baseer.dll
-/Users/taifbineid/Desktop/Basser-backend/Baseer/obj/Debug/net8.0/Baseer.sourcelink.json
